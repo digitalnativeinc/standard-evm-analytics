@@ -91,7 +91,6 @@ function DividendPage() {
     const remainingRewardUSD = parseFloat(pair?.remainingRewardETH) * ethPrice;
     const claimedReward = parseFloat(pair?.claimedReward) / 1e18;
     const remainingReward = parseFloat(pair?.remainingReward) / 1e18;
-    console.log("remaining", remainingReward);
 
     const totalRewardShare =
       (claimedRewardUSD + remainingRewardUSD) / bondedStrategyTotalReward;
@@ -180,7 +179,7 @@ function DividendPage() {
 
       previousValue["apr"].push({
         date,
-        value: parseFloat(apr * 100),
+        value: parseFloat(apr),
       });
       previousValue["apy"].push({
         date,

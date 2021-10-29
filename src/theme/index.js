@@ -48,9 +48,7 @@ export const palette = {
   // tonalOffset: 0.2,
 };
 
-const fontFamily = [
-  "Poppins"
-];
+const fontFamily = ["Poppins"];
 
 const overrides = {
   MuiTable: {
@@ -77,6 +75,11 @@ const overrides = {
   },
   MuiAvatar: {
     fallback: {},
+  },
+  MuiSelect: {
+    root: {
+      background: "#fff",
+    },
   },
 };
 

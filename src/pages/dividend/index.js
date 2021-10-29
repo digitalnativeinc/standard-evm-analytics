@@ -403,7 +403,7 @@ function DividendPage() {
         pairs={pairs}
         orderBy="totalRewardShare"
         order="desc"
-        rowsPerPage={100}
+        rowsPerPage={10}
       />
     </AppShell>
   );

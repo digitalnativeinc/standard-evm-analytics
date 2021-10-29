@@ -30,7 +30,7 @@ function RecentPoolsPage() {
         pools={pools}
         orderBy="timestamp"
         order="desc"
-        rowsPerPage={5}
+        rowsPerPage={10}
       />
     </AppShell>
   );

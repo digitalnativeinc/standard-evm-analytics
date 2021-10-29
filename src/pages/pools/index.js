@@ -24,7 +24,7 @@ function PoolsPage() {
         pools={pools}
         orderBy="rewardPerThousand"
         order="desc"
-        rowsPerPage={100}
+        rowsPerPage={10}
       />
     </AppShell>
   );

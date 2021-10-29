@@ -102,7 +102,7 @@ export default function SortableTable({
   const [orderBy, setOrderBy] = React.useState(props.orderBy);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(props.rowsPerPage || 10);
-
+  console.log("rowsPerPage", rowsPerPage);
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
@@ -114,6 +114,7 @@ export default function SortableTable({
   };
 
   const handleChangeRowsPerPage = (event) => {
+    console.log("rowsPerPage", event.target.value);
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
@@ -176,7 +177,7 @@ export default function SortableTable({
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[5, 10, 25, , { label: "All", value: -1 }]}
+        rowsPerPageOptions={[5, 10, 25, , { label: "All", value: 100000 }]}
         component="div"
         count={rows.length}
         rowsPerPage={rowsPerPage}

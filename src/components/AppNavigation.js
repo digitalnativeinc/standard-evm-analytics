@@ -1,33 +1,10 @@
 import {
-  AccountTreeOutlined,
-  AppsOutlined,
-  Brightness4,
-  Brightness4Outlined,
-  Brightness7,
-  CloseOutlined,
-  MoodOutlined,
-  DashboardOutlined,
-  CopyrightOutlined,
   DetailsOutlined,
   ExpandLess,
   ExpandMore,
-  FastfoodOutlined,
   FiberNewOutlined,
-  FiberSmartRecordOutlined,
-  Texture,
-  HistoryOutlined,
-  LinkOutlined,
-  ListAltOutlined,
-  Menu,
-  MoneyOutlined,
-  RadioButtonUncheckedOutlined,
-  ReorderOutlined,
-  SettingsEthernetOutlined,
-  StarBorder,
   TrendingDownOutlined,
   TrendingUpOutlined,
-  ViewStreamOutlined,
-  WavesOutlined,
 } from "@material-ui/icons";
 
 import {
@@ -39,25 +16,25 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  Divider,
   Hidden,
   IconButton,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-  ListSubheader,
   TextField,
-  Toolbar,
-  Tooltip,
   Typography,
-  useMediaQuery,
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-import Sushi from "./Sushi";
 import { useRouter } from "next/router";
+
+import homeIcon from "../../public/icons/home.svg";
+import farmIcon from "../../public/icons/farm.svg";
+import poolIcon from "../../public/icons/pool.svg";
+import dividendIcon from "../../public/icons/dividend.svg";
+import tokenIcon from "../../public/icons/token.svg";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -72,6 +49,9 @@ const useStyles = makeStyles((theme) => ({
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
+  icon: {
+    stroke: theme.palette.type === "light" ? "#000" : "#fff",
+  },
 }));
 
 export default function AppNavigation() {
@@ -127,7 +107,9 @@ export default function AppNavigation() {
           onClick={() => router.push("/")}
         >
           <ListItemIcon>
-            <ReorderOutlined />
+            <div>
+              {React.createElement(homeIcon, { className: classes.icon })}
+            </div>
           </ListItemIcon>
           <ListItemText primary="Dashboard" />
         </ListItem>
@@ -138,7 +120,9 @@ export default function AppNavigation() {
           onClick={() => router.push("/dividend")}
         >
           <ListItemIcon>
-            <MoodOutlined />
+            <div>
+              {React.createElement(dividendIcon, { className: classes.icon })}
+            </div>
           </ListItemIcon>
           <ListItemText primary="Dividend" />
           {/* {open ? <ExpandLess /> : <ExpandMore />}*/}
@@ -175,7 +159,9 @@ export default function AppNavigation() {
           }}
         >
           <ListItemIcon>
-            <Texture />
+            <div>
+              {React.createElement(farmIcon, { className: classes.icon })}
+            </div>
           </ListItemIcon>
           <ListItemText primary="Farm" />
           {farmOpen ? <ExpandLess /> : <ExpandMore />}
@@ -237,7 +223,9 @@ export default function AppNavigation() {
           }}
         >
           <ListItemIcon>
-            <FiberSmartRecordOutlined />
+            <div>
+              {React.createElement(poolIcon, { className: classes.icon })}
+            </div>
           </ListItemIcon>
           <ListItemText primary="Pairs" />
           {pairsOpen ? <ExpandLess /> : <ExpandMore />}
@@ -298,7 +286,9 @@ export default function AppNavigation() {
           onClick={() => router.push("/tokens")}
         >
           <ListItemIcon>
-            <CopyrightOutlined />
+            <div>
+              {React.createElement(tokenIcon, { className: classes.icon })}
+            </div>
           </ListItemIcon>
           <ListItemText primary="Tokens" />
         </ListItem>

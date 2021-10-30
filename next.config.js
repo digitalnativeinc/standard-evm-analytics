@@ -8,4 +8,12 @@ module.exports = withPWA({
     // scope: "/",
     // sw: "service-worker.js",
   },
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"],
+    });
+
+    return config;
+  },
 });

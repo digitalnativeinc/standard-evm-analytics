@@ -89,22 +89,22 @@ function DividendPairPage() {
       // const dayData = dayDatas.find((d) => d.date === currentValue.date);
       // const totalSupplyDecimals = parseFloat(currentValue.totalSupply) / 1e18;
 
-      previousValue["claimedReward"].push({
+      previousValue["claimedReward"].unshift({
         date,
         value: parseFloat(currentValue.claimedReward) / 1e18,
       });
 
-      previousValue["claimedRewardUSD"].push({
+      previousValue["claimedRewardUSD"].unshift({
         date,
         value: parseFloat(currentValue.claimedRewardUSD),
       });
 
-      previousValue["remainingReward"].push({
+      previousValue["remainingReward"].unshift({
         date,
         value: parseFloat(currentValue.remainingReward) / 1e18,
       });
 
-      previousValue["remainingRewardUSD"].push({
+      previousValue["remainingRewardUSD"].unshift({
         date,
         value: parseFloat(currentValue.remainingRewardUSD),
       });

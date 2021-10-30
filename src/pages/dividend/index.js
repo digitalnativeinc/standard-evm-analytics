@@ -130,24 +130,24 @@ function DividendPage() {
       const date = currentValue.date * 1000;
       // const dayData = dayDatas.find((d) => d.date === currentValue.date);
       const totalSupplyDecimals = parseFloat(currentValue.totalSupply) / 1e18;
-      previousValue["totalSupply"].push({
+      previousValue["totalSupply"].unshift({
         date,
         value: totalSupplyDecimals,
       });
-      previousValue["totalSupplyUSD"].push({
+      previousValue["totalSupplyUSD"].unshift({
         date,
         value: parseFloat(currentValue.totalSupplyUSD),
       });
 
-      previousValue["usersCount"].push({
+      previousValue["usersCount"].unshift({
         date,
         value: parseFloat(currentValue.usersCount),
       });
-      previousValue["totalClaimedUSD"].push({
+      previousValue["totalClaimedUSD"].unshift({
         date,
         value: parseFloat(currentValue.totalClaimedUSD),
       });
-      previousValue["remainingRewardUSD"].push({
+      previousValue["remainingRewardUSD"].unshift({
         date,
         value: parseFloat(currentValue.remainingRewardUSD),
       });
@@ -155,7 +155,7 @@ function DividendPage() {
         parseFloat(currentValue.totalClaimedUSD) +
         parseFloat(currentValue.remainingRewardUSD);
 
-      previousValue["totalRewardUSD"].push({
+      previousValue["totalRewardUSD"].unshift({
         date,
         value: totalRewardUSD,
       });
@@ -177,11 +177,11 @@ function DividendPage() {
       //       parseFloat(currentValue.totalSupplyUSD)) *
       //     365;
 
-      previousValue["apr"].push({
+      previousValue["apr"].unshift({
         date,
         value: parseFloat(apr),
       });
-      previousValue["apy"].push({
+      previousValue["apy"].unshift({
         date,
         value: parseFloat((Math.pow(1 + apr / 100 / 365, 365) - 1) * 100),
       });

@@ -59,8 +59,6 @@ function DividendPage() {
     data: { bondedStrategyHistories: histories },
   } = useQuery(bondedStrategyHistoriesQuery);
 
-  console.log(histories);
-
   const {
     data: { bondedStrategyPairs },
   } = useQuery(bondedStrategyPairsQuery);

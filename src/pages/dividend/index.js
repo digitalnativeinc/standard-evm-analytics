@@ -284,7 +284,7 @@ function DividendPage() {
               />
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <KPI title="Users" value={currentUsers} format="integer" />
+              <KPI title="Stakers" value={currentUsers} format="integer" />
             </Grid>
 
             {/* <Grid item xs={12} sm={6} md={3}>

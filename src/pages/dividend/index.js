@@ -59,6 +59,8 @@ function DividendPage() {
     data: { bondedStrategyHistories: histories },
   } = useQuery(bondedStrategyHistoriesQuery);
 
+  console.log(histories);
+
   const {
     data: { bondedStrategyPairs },
   } = useQuery(bondedStrategyPairsQuery);
@@ -205,12 +207,15 @@ function DividendPage() {
       return previousValue + currentValue.value;
     }, 0) / apy.length;
 
-  const currentApy = apy[0].value ?? 0;
-  const currentTotalSupply = totalSupply[0]?.value ?? 0;
-  const currentUsers = usersCount[0]?.value ?? 0;
-  const currentTotalRewardUSD = totalRewardUSD[0]?.value ?? 0;
-  const currentRemainingRewardUSD = remainingRewardUSD[0]?.value ?? 0;
-  const currentTotalClaimedUSD = totalClaimedUSD[0]?.value ?? 0;
+  const currentApy = apy?.[apy.length - 1].value ?? 0;
+  const currentTotalSupply = totalSupply?.[totalSupply.length - 1]?.value ?? 0;
+  const currentUsers = usersCount?.[usersCount.length - 1]?.value ?? 0;
+  const currentTotalRewardUSD =
+    totalRewardUSD?.[totalRewardUSD.length - 1]?.value ?? 0;
+  const currentRemainingRewardUSD =
+    remainingRewardUSD?.[remainingRewardUSD.length - 1]?.value ?? 0;
+  const currentTotalClaimedUSD =
+    totalClaimedUSD?.[totalClaimedUSD.length - 1]?.value ?? 0;
 
   // const oneDayVolume = factory.volumeUSD - factory.oneDay.volumeUSD;
 

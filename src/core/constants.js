@@ -44,12 +44,12 @@ export const SCANNERS = {
   },
   [ChainId.SHIDEN]: {
     name: "Subscan",
-    url: "https://shiden.subscan.io/",
+    url: "https://blockscout.com/shiden",
     getUrl: (id) => {
-      return `https://shiden.subscan.io/account/${id}`;
+      return `https://blockscout.com/shiden/account/${id}`;
     },
     getTxUrl: (id) => {
-      return `https://shiden.subscan.io/tx/${id}`;
+      return `https://blockscout.com/shiden/tx/${id}`;
     },
   },
 };

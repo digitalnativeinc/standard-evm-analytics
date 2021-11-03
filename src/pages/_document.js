@@ -36,7 +36,7 @@ export default class MyDocument extends Document {
           />
           <link
             href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
-            rel="preload"
+            rel="stylesheet"
           />
           <meta name="format-detection" content="telephone=no" />
           <meta name="mobile-web-app-capable" content="yes" />

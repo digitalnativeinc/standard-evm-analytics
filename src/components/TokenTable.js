@@ -42,14 +42,14 @@ export default function TokenTable({ tokens, title }) {
         parseFloat(token.derivedETH) * parseFloat(bundles[0]?.ethPrice);
 
       const priceYesterday =
-        parseFloat(token.oneDay?.derivedETH) *
-        parseFloat(oneDayEthPriceData?.ethPrice);
+        parseFloat(token.oneDay?.derivedETH ?? 0) *
+        parseFloat(oneDayEthPriceData?.oneDayEthPrice ?? 0);
 
       const priceChange = ((price - priceYesterday) / priceYesterday) * 100;
 
       const priceLastWeek =
-        parseFloat(token.sevenDay?.derivedETH) *
-        parseFloat(sevenDayEthPriceData?.ethPrice);
+        parseFloat(token.sevenDay?.derivedETH ?? 0) *
+        parseFloat(sevenDayEthPriceData?.sevenDayEthPrice ?? 0);
 
       const sevenDayPriceChange =
         ((price - priceLastWeek) / priceLastWeek) * 100;
@@ -60,7 +60,6 @@ export default function TokenTable({ tokens, title }) {
         parseFloat(bundles[0]?.ethPrice);
 
       const volumeYesterday = token.volumeUSD - token.oneDay?.volumeUSD;
-
       return {
         ...token,
         price,

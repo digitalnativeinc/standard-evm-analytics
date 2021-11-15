@@ -3,6 +3,7 @@ import {
   ethPriceQuery,
   getApollo,
   getOneDayEthPrice,
+  getSevenDayEthPrice,
   getTokens,
   tokensQuery,
   useInterval,
@@ -18,7 +19,7 @@ function TokensPage() {
   } = useQuery(tokensQuery);
 
   useInterval(async () => {
-    await Promise.all([getTokens, getOneDayEthPrice]);
+    await Promise.all([getTokens, getOneDayEthPrice, getSevenDayEthPrice]);
   }, 60000);
 
   return (
@@ -39,7 +40,7 @@ export async function getStaticProps() {
   });
 
   await getOneDayEthPrice(client);
-
+  await getSevenDayEthPrice(client);
   await getTokens(client);
 
   return {

@@ -153,13 +153,13 @@ function TokenPage() {
   const totalLiquidityUSDYesterday =
     parseFloat(token.oneDay?.liquidity) *
     parseFloat(token.oneDay?.derivedETH) *
-    parseFloat(oneDayEthPriceData?.ethPrice);
+    parseFloat(oneDayEthPriceData?.oneDayEthPrice);
 
   const price = parseFloat(token?.derivedETH) * parseFloat(bundles[0].ethPrice);
 
   const priceYesterday =
     parseFloat(token.oneDay?.derivedETH) *
-    parseFloat(oneDayEthPriceData?.ethPrice);
+    parseFloat(oneDayEthPriceData?.oneDayEthPrice);
 
   const priceChange = ((price - priceYesterday) / priceYesterday) * 100;
 

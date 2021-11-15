@@ -51,13 +51,13 @@ export const uniswapUserQuery = gql`
 
 export const oneDayEthPriceQuery = gql`
   query OneDayEthPrice {
-    ethPrice @client
+    oneDayEthPrice @client
   }
 `;
 
 export const sevenDayEthPriceQuery = gql`
   query sevenDayEthPrice {
-    ethPrice @client
+    sevenDayEthPrice @client
   }
 `;
 

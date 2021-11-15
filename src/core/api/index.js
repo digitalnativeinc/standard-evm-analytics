@@ -72,7 +72,7 @@ export async function getOneDayEthPrice(client = getApollo()) {
   await client.cache.writeQuery({
     query: oneDayEthPriceQuery,
     data: {
-      ethPrice: bundles[0]?.ethPrice,
+      oneDayEthPrice: bundles[0]?.ethPrice,
     },
   });
 }
@@ -93,7 +93,7 @@ export async function getSevenDayEthPrice(client = getApollo()) {
   await client.cache.writeQuery({
     query: sevenDayEthPriceQuery,
     data: {
-      ethPrice: bundles[0]?.ethPrice,
+      sevenDayEthPrice: bundles[0]?.ethPrice,
     },
   });
 }

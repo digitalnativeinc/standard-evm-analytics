@@ -1,7 +1,8 @@
-import store from "../../state";
+// import store from "../../state";
+import { DEFAULT_CHAIN_ID } from "../constants";
 
 export function getNetwork() {
-  const state = store.getState();
+  // const state = store.getState();
 
-  return 336 || state.network.network;
+  return DEFAULT_CHAIN_ID;
 }

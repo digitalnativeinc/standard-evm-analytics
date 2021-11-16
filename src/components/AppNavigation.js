@@ -113,7 +113,22 @@ export default function AppNavigation() {
           </ListItemIcon>
           <ListItemText primary="Dashboard" />
         </ListItem>
+
         <ListItem
+          key="/bar"
+          button
+          selected={router.pathname === "/bar"}
+          onClick={() => router.push("/bar")}
+        >
+          <ListItemIcon>
+            <div>
+              {React.createElement(dividendIcon, { className: classes.icon })}
+            </div>
+          </ListItemIcon>
+          <ListItemText primary="Bar" />
+          {/* {open ? <ExpandLess /> : <ExpandMore />} */}
+        </ListItem>
+        {/*<ListItem
           key="/dividend"
           button
           selected={router.pathname === "/dividend"}
@@ -125,9 +140,9 @@ export default function AppNavigation() {
             </div>
           </ListItemIcon>
           <ListItemText primary="Dividend" />
-          {/* {open ? <ExpandLess /> : <ExpandMore />}*/}
         </ListItem>
 
+        
         {/* <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             <ListItem

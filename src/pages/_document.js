@@ -4,7 +4,7 @@ import { GA_TRACKING_ID } from "../core/analytics";
 import React from "react";
 import { ServerStyleSheets } from "@material-ui/core/styles";
 //
-import { palette } from "../theme";
+// import { palette } from "../theme";
 
 export default class MyDocument extends Document {
   render() {

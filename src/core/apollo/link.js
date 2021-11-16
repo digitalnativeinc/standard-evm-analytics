@@ -6,6 +6,7 @@ import {
   getMasterChefGraphAddr,
   getBlocksGraphAddr,
   getExchangeGraphAddr,
+  getBarGraphAddr,
 } from "./constants";
 
 export const uniswap = from([
@@ -56,6 +57,16 @@ export const lockup = from([
   }),
 ]);
 
+export const getBar = (chainId) => {
+  return from([
+    new RetryLink(),
+    new HttpLink({
+      uri: getBarGraphAddr(chainId),
+      shouldBatch: true,
+    }),
+  ]);
+};
+
 export const getExchange = (chainId) => {
   return from([
     new RetryLink(),
@@ -101,7 +112,7 @@ export default split(
       (operation) => {
         return operation.getContext().clientName === "bar";
       },
-      bar,
+      getBar(getNetwork()),
       split(
         (operation) => {
           return operation.getContext().clientName === "lockup";

@@ -149,7 +149,6 @@ export async function getPools(client = getApollo(), chainId = getNetwork()) {
     variables: { pairAddresses },
     fetchPolicy: "network-only",
   });
-
   // const averageBlockTime = (await getAverageBlockTime()) / 100;
 
   const averageBlockTime = await getAverageBlockTime();

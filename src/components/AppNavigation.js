@@ -115,17 +115,17 @@ export default function AppNavigation() {
         </ListItem>
 
         <ListItem
-          key="/bar"
+          key="/dividend"
           button
-          selected={router.pathname === "/bar"}
-          onClick={() => router.push("/bar")}
+          selected={router.pathname === "/dividend"}
+          onClick={() => router.push("/dividend")}
         >
           <ListItemIcon>
             <div>
               {React.createElement(dividendIcon, { className: classes.icon })}
             </div>
           </ListItemIcon>
-          <ListItemText primary="Bar" />
+          <ListItemText primary="Dividend" />
           {/* {open ? <ExpandLess /> : <ExpandMore />} */}
         </ListItem>
         {/*<ListItem

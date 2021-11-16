@@ -23,7 +23,7 @@ export const ChainId = {
 };
 
 export const SCANNERS = {
-  [ChainId.RINKEBY]: {
+  [ChainId.MAINNET]: {
     name: "Etherscan",
     url: "https://etherscan.io/",
     getUrl: (id) => {

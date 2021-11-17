@@ -121,24 +121,24 @@ function BarPage() {
     (previousValue, currentValue) => {
       const date = currentValue.date * 1000;
       const dayData = dayDatas.find((d) => d.date === currentValue.date);
-      previousValue["sushiStakedUSD"].push({
+      previousValue["sushiStakedUSD"].unshift({
         date,
         value: parseFloat(currentValue.sushiStakedUSD),
       });
-      previousValue["sushiHarvestedUSD"].push({
+      previousValue["sushiHarvestedUSD"].unshift({
         date,
         value: parseFloat(currentValue.sushiHarvestedUSD),
       });
 
-      previousValue["xSushiMinted"].push({
+      previousValue["xSushiMinted"].unshift({
         date,
         value: parseFloat(currentValue.xSushiMinted),
       });
-      previousValue["xSushiBurned"].push({
+      previousValue["xSushiBurned"].unshift({
         date,
         value: parseFloat(currentValue.xSushiBurned),
       });
-      previousValue["xSushi"].push({
+      previousValue["xSushi"].unshift({
         date,
         value: parseFloat(currentValue.xSushiSupply),
       });
@@ -149,15 +149,15 @@ function BarPage() {
             ? currentValue.xSushiSupply * currentValue.ratio * sushiPrice
             : currentValue.ratio * sushiPrice)) *
         365;
-      previousValue["apr"].push({
+      previousValue["apr"].unshift({
         date,
         value: parseFloat(apr * 100),
       });
-      previousValue["apy"].push({
+      previousValue["apy"].unshift({
         date,
         value: parseFloat((Math.pow(1 + apr / 365, 365) - 1) * 100),
       });
-      previousValue["fees"].push({
+      previousValue["fees"].unshift({
         date,
         value: parseFloat(dayData.volumeUSD * 0.005),
       });
@@ -213,7 +213,7 @@ function BarPage() {
               <KPI title="APY (Avg)" value={averageApy} format="percent" />
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <KPI title="xSushi" value={bar.totalSupply} format="integer" />
+              <KPI title="dSTND" value={bar.totalSupply} format="integer" />
             </Grid>
             {/* <Grid item xs={12} sm={6} md={3}>
               <KPI

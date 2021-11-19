@@ -121,24 +121,24 @@ function BarPage() {
     (previousValue, currentValue) => {
       const date = currentValue.date * 1000;
       const dayData = dayDatas.find((d) => d.date === currentValue.date);
-      previousValue["sushiStakedUSD"].unshift({
+      previousValue["sushiStakedUSD"].push({
         date,
         value: parseFloat(currentValue.sushiStakedUSD),
       });
-      previousValue["sushiHarvestedUSD"].unshift({
+      previousValue["sushiHarvestedUSD"].push({
         date,
         value: parseFloat(currentValue.sushiHarvestedUSD),
       });
 
-      previousValue["xSushiMinted"].unshift({
+      previousValue["xSushiMinted"].push({
         date,
         value: parseFloat(currentValue.xSushiMinted),
       });
-      previousValue["xSushiBurned"].unshift({
+      previousValue["xSushiBurned"].push({
         date,
         value: parseFloat(currentValue.xSushiBurned),
       });
-      previousValue["xSushi"].unshift({
+      previousValue["xSushi"].push({
         date,
         value: parseFloat(currentValue.xSushiSupply),
       });
@@ -149,15 +149,15 @@ function BarPage() {
             ? currentValue.xSushiSupply * currentValue.ratio * sushiPrice
             : currentValue.ratio * sushiPrice)) *
         365;
-      previousValue["apr"].unshift({
+      previousValue["apr"].push({
         date,
         value: parseFloat(apr * 100),
       });
-      previousValue["apy"].unshift({
+      previousValue["apy"].push({
         date,
         value: parseFloat((Math.pow(1 + apr / 365, 365) - 1) * 100),
       });
-      previousValue["fees"].unshift({
+      previousValue["fees"].push({
         date,
         value: parseFloat(dayData.volumeUSD * 0.005),
       });
@@ -313,7 +313,10 @@ function BarPage() {
                   height={height}
                   data={[sushiStakedUSD, sushiHarvestedUSD]}
                   margin={{ top: 64, right: 32, bottom: 0, left: 64 }}
-                  labels={["STND Staked (USD)", "STND Harvested (USD)"]}
+                  labels={[
+                    "Daily STND Staked (USD)",
+                    "Daily STND Harvested (USD)",
+                  ]}
                 />
               )}
             </ParentSize>
@@ -332,7 +335,7 @@ function BarPage() {
                   height={height}
                   margin={{ top: 64, right: 32, bottom: 0, left: 64 }}
                   data={[xSushiMinted, xSushiBurned]}
-                  labels={["dSTND Minted", "dSTND Burned"]}
+                  labels={["Daily dSTND Minted", "Daily dSTND Burned"]}
                 />
               )}
             </ParentSize>

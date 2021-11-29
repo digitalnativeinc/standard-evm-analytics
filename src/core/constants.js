@@ -66,12 +66,12 @@ export const SCANNERS = {
   },
   [ChainId.METIS]: {
     name: "Andromeda Explorer",
-    url: "https://andromeda-explorer.metis.io/",
+    url: "https://andromeda-explorer.metis.io",
     getUrl: (id) => {
-      return `https://andromeda-explorer.metis.io//account/${id}`;
+      return `https://andromeda-explorer.metis.io/address/${id}`;
     },
     getTxUrl: (id) => {
-      return `https://andromeda-explorer.metis.io//tx/${id}`;
+      return `https://andromeda-explorer.metis.io/tx/${id}`;
     },
   },
 };

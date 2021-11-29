@@ -33,6 +33,7 @@ import { useRouter } from "next/router";
 import { useNetwork } from "state/network/hooks";
 import { SCANNERS } from "app/core/constants";
 import { pricesQuery } from "core/queries/prices";
+import { getNetwork } from "core/state";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -89,7 +90,7 @@ function PairPage(props) {
   }
 
   const classes = useStyles();
-  const chainId = useNetwork();
+  const chainId = getNetwork();
 
   const id = router.query.id.toLowerCase();
 

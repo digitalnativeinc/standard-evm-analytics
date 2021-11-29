@@ -8,6 +8,7 @@ import formatDistance from "date-fns/formatDistance";
 import { makeStyles } from "@material-ui/core/styles";
 import { useNetwork } from "state/network/hooks";
 import { SCANNERS } from "app/core/constants";
+import { getNetwork } from "core/state";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,7 +18,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Transactions({ transactions, txCount }) {
   const classes = useStyles();
-  const chainId = useNetwork();
+  const chainId = getNetwork();
+  console.log("chainId", chainId);
 
   const rows = [
     ...transactions.swaps,

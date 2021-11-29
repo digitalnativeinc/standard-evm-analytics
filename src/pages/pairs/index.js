@@ -10,6 +10,7 @@ import {
 import Head from "next/head";
 import React from "react";
 import { useQuery } from "@apollo/client";
+import { pricesQuery } from "core/queries/prices";
 
 function PairsPage() {
   const {

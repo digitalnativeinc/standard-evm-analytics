@@ -38,7 +38,7 @@ export async function getOneDayBlock(client = getApollo()) {
     fetchPolicy: "network-only",
   });
 
-  return { number: Number(blocksData?.blocks[0].number) };
+  return { number: Number(blocksData?.blocks[0]?.number) };
 }
 
 export async function getTwoDayBlock(client = getApollo()) {
@@ -62,7 +62,7 @@ export async function getTwoDayBlock(client = getApollo()) {
 }
 
 export async function getSevenDayBlock(client = getApollo()) {
-  const date = startOfMinute(subWeeks(Date.now(), 1));
+  const date = startOfMinute(subDays(Date.now(), 3));
   const start = Math.floor(date / 1000);
   const end = Math.floor(date / 1000) + 600;
 
@@ -78,7 +78,7 @@ export async function getSevenDayBlock(client = getApollo()) {
     fetchPolicy: "network-only",
   });
 
-  return { number: Number(blocksData?.blocks[0].number) };
+  return { number: Number(blocksData?.blocks[0]?.number) };
 }
 
 export async function getAverageBlockTime(client = getApollo()) {

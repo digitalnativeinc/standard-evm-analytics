@@ -57,6 +57,14 @@ export const lockup = from([
   }),
 ]);
 
+export const prices = from([
+  new RetryLink(),
+  new HttpLink({
+    uri: "https://price.proxy.standardtech.xyz/graphql",
+    shouldBatch: true,
+  }),
+]);
+
 export const getBar = (chainId) => {
   return from([
     new RetryLink(),
@@ -118,7 +126,13 @@ export default split(
           return operation.getContext().clientName === "lockup";
         },
         lockup,
-        getExchange(getNetwork())
+        split(
+          (operation) => {
+            return operation.getContext().clientName === "prices";
+          },
+          prices,
+          getExchange(getNetwork())
+        )
       )
     )
   )

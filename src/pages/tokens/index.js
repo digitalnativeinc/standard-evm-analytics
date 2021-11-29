@@ -1,25 +1,31 @@
 import { AppShell, TokenTable } from "app/components";
 import {
-  ethPriceQuery,
   getApollo,
-  getOneDayEthPrice,
-  getSevenDayEthPrice,
   getTokens,
   tokensQuery,
   useInterval,
+  getEthPrice,
 } from "app/core";
 
 import Head from "next/head";
 import React from "react";
 import { useQuery } from "@apollo/client";
+import { pricesQuery } from "core/queries/prices";
 
 function TokensPage() {
   const {
     data: { tokens },
   } = useQuery(tokensQuery);
 
+  const {
+    data: { prices: bundles },
+  } = useQuery(pricesQuery, {
+    variables: { aliases: ["METIS"] },
+    pollInterval: 60000,
+  });
+
   useInterval(async () => {
-    await Promise.all([getTokens, getOneDayEthPrice, getSevenDayEthPrice]);
+    await Promise.all([getTokens, getEthPrice]);
   }, 60000);
 
   return (
@@ -35,12 +41,10 @@ function TokensPage() {
 export async function getStaticProps() {
   const client = getApollo();
 
-  await client.query({
-    query: ethPriceQuery,
-  });
+  await getEthPrice();
 
-  await getOneDayEthPrice(client);
-  await getSevenDayEthPrice(client);
+  // await getOneDayEthPrice(client);
+  // await getSevenDayEthPrice(client);
   await getTokens(client);
 
   return {

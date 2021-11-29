@@ -16,14 +16,10 @@ import {
   currencyFormatter,
   ethPriceQuery,
   getApollo,
-  getOneDayBlock,
-  getOneDayEthPrice,
+  getEthPrice,
   getToken,
   getTokenPairs,
-  oneDayEthPriceQuery,
-  sevenDayEthPriceQuery,
   tokenDayDatasQuery,
-  tokenIdsQuery,
   tokenPairsQuery,
   tokenQuery,
   transactionsQuery,
@@ -37,6 +33,7 @@ import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useNetwork } from "state/network/hooks";
 import { SCANNERS } from "app/core/constants";
+import { pricesQuery } from "core/queries/prices";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -94,16 +91,17 @@ function TokenPage() {
   });
 
   const {
-    data: { bundles },
-  } = useQuery(ethPriceQuery, {
+    data: { prices: bundles },
+  } = useQuery(pricesQuery, {
+    variables: { aliases: ["METIS"] },
     pollInterval: 60000,
   });
 
-  const { data: oneDayEthPriceData } = useQuery(oneDayEthPriceQuery);
+  // const { data: oneDayEthPriceData } = useQuery(oneDayEthPriceQuery);
 
   useInterval(async () => {
     await getToken(id);
-    await getOneDayEthPrice();
+    // await getOneDayEthPrice();
   }, 60000);
 
   const {
@@ -130,47 +128,47 @@ function TokenPage() {
     pollInterval: 60000,
   });
 
-  const chartDatas = tokenDayDatas.reduce(
-    (previousValue, currentValue) => {
-      previousValue["liquidity"].unshift({
-        date: currentValue.date,
-        value: parseFloat(currentValue.liquidityUSD),
-      });
-      previousValue["volume"].unshift({
-        date: currentValue.date,
-        value: parseFloat(currentValue.volumeUSD),
-      });
-      return previousValue;
-    },
-    { liquidity: [], volume: [] }
-  );
+  // const chartDatas = tokenDayDatas.reduce(
+  //   (previousValue, currentValue) => {
+  //     previousValue["liquidity"].unshift({
+  //       date: currentValue.date,
+  //       value: parseFloat(currentValue.liquidityUSD),
+  //     });
+  //     previousValue["volume"].unshift({
+  //       date: currentValue.date,
+  //       value: parseFloat(currentValue.volumeUSD),
+  //     });
+  //     return previousValue;
+  //   },
+  //   { liquidity: [], volume: [] }
+  // );
 
   const totalLiquidityUSD =
     parseFloat(token?.liquidity) *
     parseFloat(token?.derivedETH) *
-    parseFloat(bundles[0].ethPrice);
+    parseFloat(bundles[0].price);
 
-  const totalLiquidityUSDYesterday =
-    parseFloat(token.oneDay?.liquidity) *
-    parseFloat(token.oneDay?.derivedETH) *
-    parseFloat(oneDayEthPriceData?.oneDayEthPrice);
+  // const totalLiquidityUSDYesterday =
+  //   parseFloat(token.oneDay?.liquidity) *
+  //   parseFloat(token.oneDay?.derivedETH) *
+  //   parseFloat(oneDayEthPriceData?.oneDayEthPrice);
 
-  const price = parseFloat(token?.derivedETH) * parseFloat(bundles[0].ethPrice);
+  const price = parseFloat(token?.derivedETH) * parseFloat(bundles[0].price);
 
-  const priceYesterday =
-    parseFloat(token.oneDay?.derivedETH) *
-    parseFloat(oneDayEthPriceData?.oneDayEthPrice);
+  // const priceYesterday =
+  //   parseFloat(token.oneDay?.derivedETH) *
+  //   parseFloat(oneDayEthPriceData?.oneDayEthPrice);
 
-  const priceChange = ((price - priceYesterday) / priceYesterday) * 100;
+  // const priceChange = ((price - priceYesterday) / priceYesterday) * 100;
 
-  const volume = token?.volumeUSD - token?.oneDay?.volumeUSD;
-  const volumeYesterday = token?.oneDay?.volumeUSD - token?.twoDay?.volumeUSD;
+  // const volume = token?.volumeUSD - token?.oneDay?.volumeUSD;
+  // const volumeYesterday = token?.oneDay?.volumeUSD - token?.twoDay?.volumeUSD;
 
   const txCount = token?.txCount - token?.oneDay?.txCount;
   const txCountYesterday = token?.oneDay?.txCount - token?.twoDay?.txCount;
 
-  const fees = volume * 0.003;
-  const feesYesterday = volumeYesterday * 0.003;
+  // const fees = volume * 0.003;
+  // const feesYesterday = volumeYesterday * 0.003;
 
   return (
     <AppShell>
@@ -198,7 +196,6 @@ function TokenPage() {
               <Typography variant="h6" component="div">
                 {currencyFormatter.format(price || 0)}
               </Typography>
-              <Percent percent={priceChange} ml={1} />
             </Box>
           </Grid>
           <Grid item xs={12} sm="auto" className={classes.links}>
@@ -221,70 +218,10 @@ function TokenPage() {
       </PageHeader>
 
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={12} md={6}>
-          <Paper
-            variant="outlined"
-            style={{ height: 300, position: "relative" }}
-          >
-            <ParentSize>
-              {({ width, height }) => (
-                <AreaChart
-                  title="Liquidity"
-                  data={chartDatas.liquidity}
-                  width={width}
-                  height={height}
-                  margin={{ top: 125, right: 0, bottom: 0, left: 0 }}
-                  tooltipDisabled
-                  overlayEnabled
-                />
-              )}
-            </ParentSize>
-          </Paper>
-        </Grid>
-        <Grid item xs={12} sm={12} md={6}>
-          <Paper
-            variant="outlined"
-            style={{ height: 300, position: "relative" }}
-          >
-            <ParentSize>
-              {({ width, height }) => (
-                <BarChart
-                  title="Volume"
-                  data={chartDatas.volume}
-                  width={width}
-                  height={height}
-                  margin={{ top: 125, right: 0, bottom: 0, left: 0 }}
-                  tooltipDisabled
-                  overlayEnabled
-                />
-              )}
-            </ParentSize>
-          </Paper>
-        </Grid>
-
         <Grid item xs={12} md={4}>
           <KPI
-            title="Liquidity (24h)"
+            title="Total Liquidity"
             value={currencyFormatter.format(totalLiquidityUSD || 0)}
-            difference={
-              ((totalLiquidityUSD - totalLiquidityUSDYesterday) /
-                totalLiquidityUSDYesterday) *
-              100
-            }
-          />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <KPI
-            title="Volume (24h)"
-            value={currencyFormatter.format(volume || 0)}
-            difference={((volume - volumeYesterday) / volumeYesterday) * 100}
-          />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <KPI
-            title="Fees (24h)"
-            value={currencyFormatter.format(fees)}
-            difference={((fees - feesYesterday) / feesYesterday) * 100}
           />
         </Grid>
       </Grid>
@@ -325,6 +262,8 @@ export async function getStaticProps({ params }) {
 
   await getToken(id, client);
 
+  await getEthPrice();
+
   await client.query({
     query: tokenDayDatasQuery,
     variables: {
@@ -347,7 +286,7 @@ export async function getStaticProps({ params }) {
     },
   });
 
-  await getOneDayEthPrice(client);
+  // await getOneDayEthPrice(client);
 
   return {
     props: {

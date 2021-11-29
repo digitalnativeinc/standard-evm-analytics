@@ -1,6 +1,7 @@
 import { AppShell, PairTable, PoolTable } from "app/components";
 import {
   getApollo,
+  getEthPrice,
   getPairs,
   getPools,
   pairsQuery,
@@ -11,14 +12,23 @@ import {
 import Head from "next/head";
 import React from "react";
 import { useQuery } from "@apollo/client";
+import { pricesQuery } from "core/queries/prices";
 
 function RecentPairsPage() {
   const {
     data: { pairs },
   } = useQuery(pairsQuery);
 
-  useInterval(() => Promise.all([getPairs]), 60000);
+  const {
+    data: { prices: bundles },
+  } = useQuery(pricesQuery, {
+    variables: { aliases: ["METIS"] },
+    pollInterval: 60000,
+  });
 
+  useInterval(async () => {
+    await Promise.all([getPairs, getEthPrice]);
+  }, 60000);
   return (
     <AppShell>
       <Head>
@@ -32,6 +42,8 @@ function RecentPairsPage() {
 export async function getStaticProps() {
   const client = getApollo();
   await getPairs(client);
+  await getEthPrice();
+
   return {
     props: {
       initialApolloState: client.cache.extract(),

@@ -1,7 +1,5 @@
 import {
   AppShell,
-  AreaChart,
-  BarChart,
   PairTable,
   PoolTable,
   Search,
@@ -48,14 +46,6 @@ function IndexPage() {
   } = useQuery(pairsQuery);
 
   const {
-    data: { pools },
-  } = useQuery(poolsQuery, {
-    context: {
-      clientName: "masterchef",
-    },
-  });
-
-  const {
     data: { dayDatas },
   } = useQuery(dayDatasQuery);
 
@@ -63,11 +53,11 @@ function IndexPage() {
     () =>
       Promise.all([
         getPairs,
-        getPools,
+        // getPools,
         getTokens,
         getDayData,
-        getOneDayEthPrice,
-        getSevenDayEthPrice,
+        // getOneDayEthPrice,
+        // getSevenDayEthPrice,
       ]),
     60000
   );
@@ -99,60 +89,12 @@ function IndexPage() {
       </Box>
 
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={12} md={6}>
-          <Paper style={{ height: 300 }} className={classes.chartContainer}>
-            <ParentSize>
-              {({ width, height }) => (
-                <AreaChart
-                  title="Liquidity"
-                  width={width}
-                  height={height}
-                  data={liquidity}
-                  margin={{ top: 125, right: 0, bottom: 0, left: 0 }}
-                  tooltipDisabled
-                  overlayEnabled
-                />
-              )}
-            </ParentSize>
-          </Paper>
-        </Grid>
-        <Grid item xs={12} sm={12} md={6}>
-          <Paper
-            style={{ height: 300, position: "relative" }}
-            className={classes.chartContainer}
-          >
-            <ParentSize>
-              {({ width, height }) => (
-                <BarChart
-                  title="Volume"
-                  width={width}
-                  height={height}
-                  data={volume}
-                  margin={{ top: 125, right: 0, bottom: 0, left: 0 }}
-                  tooltipDisabled
-                  overlayEnabled
-                />
-              )}
-            </ParentSize>
-          </Paper>
-        </Grid>
-
         <Grid item xs={12}>
           <PairTable title="Top STND Liquidity Pairs" pairs={pairs} />
         </Grid>
 
         <Grid item xs={12}>
           <TokenTable title="Top Tokens" tokens={tokens} />
-        </Grid>
-
-        <Grid item xs={12}>
-          <PoolTable
-            title="STND Reward Pools"
-            pools={pools}
-            orderBy="tvl"
-            order="desc"
-            rowsPerPage={25}
-          />
         </Grid>
       </Grid>
       <div className={"gradient1"}></div>
@@ -168,15 +110,15 @@ export async function getStaticProps() {
 
   await getEthPrice(client);
 
-  await getOneDayEthPrice(client);
+  // await getOneDayEthPrice(client);
 
-  await getSevenDayEthPrice(client);
+  // await getSevenDayEthPrice(client);
 
   await getTokens(client);
 
   await getPairs(client);
 
-  await getPools(client);
+  // await getPools(client);
 
   return {
     props: {

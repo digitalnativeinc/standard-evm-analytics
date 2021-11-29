@@ -13,6 +13,7 @@ import {
   sevenDayEthPriceQuery,
   tokenPairsQuery,
 } from "app/core";
+import { pricesQuery } from "core/queries/prices";
 
 export * from "./bondedStrategy";
 export * from "./blocks";
@@ -43,18 +44,42 @@ export async function getLiquidityPositionSnapshots(
 
 // Eth Price
 export async function getEthPrice(client = getApollo()) {
-  const { data } = await client.query({
-    query: ethPriceQuery,
+  const { prices } = await client.query({
+    query: pricesQuery,
+    variables: {
+      aliases: ["METIS"],
+    },
+    context: {
+      clientName: "prices",
+    },
   });
 
   await client.cache.writeQuery({
-    query: ethPriceQuery,
-    data,
+    query: pricesQuery,
+    data: prices,
+    variables: {
+      aliases: ["METIS"],
+    },
   });
 
   return await client.cache.readQuery({
-    query: ethPriceQuery,
+    query: pricesQuery,
+    variables: {
+      aliases: ["METIS"],
+    },
   });
+  // const { data } = await client.query({
+  //   query: ethPriceQuery,
+  // });
+
+  // await client.cache.writeQuery({
+  //   query: ethPriceQuery,
+  //   data,
+  // });
+
+  // return await client.cache.readQuery({
+  //   query: ethPriceQuery,
+  // });
 }
 
 export async function getOneDayEthPrice(client = getApollo()) {

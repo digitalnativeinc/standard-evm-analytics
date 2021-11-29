@@ -4,6 +4,7 @@ export const GRAPH_HOST = {
   [ChainId.RINKEBY]: "https://api.thegraph.com/subgraphs/name",
   [ChainId.SHIBUYA]: "https://graph.shibuya.standardtech.xyz/subgraphs/name",
   [ChainId.SHIDEN]: "https://graph.shiden.standardtech.xyz/subgraphs/name",
+  [ChainId.METIS]: "https://graph.metis.standardtech.xyz/subgraphs/name",
 };
 
 export const EXCHANGE = {
@@ -11,6 +12,7 @@ export const EXCHANGE = {
   [ChainId.RINKEBY]: "/billjhlee/rinkeby-exchange2",
   [ChainId.SHIBUYA]: "/digitalnativeinc/shibuya-exchange",
   [ChainId.SHIDEN]: "/digitalnativeinc/shiden-exchange",
+  [ChainId.METIS]: "/digitalnativeinc/metis-exchange",
 };
 
 export const MASTERCHEF = {
@@ -18,6 +20,7 @@ export const MASTERCHEF = {
   [ChainId.RINKEBY]: "/billjhlee/rinkeby-master-pool2",
   [ChainId.SHIBUYA]: "/digitalnativeinc/shibuya-master-pool",
   [ChainId.SHIDEN]: "/digitalnativeinc/shiden-master-pool",
+  [ChainId.METIS]: "/digitalnativeinc/metis-master-pool",
 };
 
 export const BLOCKS = {
@@ -25,6 +28,7 @@ export const BLOCKS = {
   [ChainId.RINKEBY]: "/billjhlee/rinkeby-blocks",
   [ChainId.SHIBUYA]: "/digitalnativeinc/shibuya-blocks",
   [ChainId.SHIDEN]: "/digitalnativeinc/shiden-blocks",
+  [ChainId.METIS]: "/digitalnativeinc/metis-blocks",
 };
 
 export const BAR = {

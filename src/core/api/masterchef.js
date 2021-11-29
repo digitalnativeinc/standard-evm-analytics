@@ -156,9 +156,8 @@ export async function getPools(client = getApollo(), chainId = getNetwork()) {
     averageBlockTime.difference == 0 ? 13 : averageBlockTime.difference;
   // const averageBlockTime = 13;
 
-  const { bundles } = await getEthPrice();
-
-  const ethPrice = bundles[0].ethPrice;
+  const { prices: bundles } = await getEthPrice();
+  const ethPrice = bundles[0].price;
 
   const { token } = await getToken(STND_ADDRESS[chainId]);
 

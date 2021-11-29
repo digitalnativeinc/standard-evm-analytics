@@ -114,20 +114,6 @@ export default function AppNavigation() {
           <ListItemText primary="Dashboard" />
         </ListItem>
 
-        <ListItem
-          key="/dividend"
-          button
-          selected={router.pathname === "/dividend"}
-          onClick={() => router.push("/dividend")}
-        >
-          <ListItemIcon>
-            <div>
-              {React.createElement(dividendIcon, { className: classes.icon })}
-            </div>
-          </ListItemIcon>
-          <ListItemText primary="Dividend" />
-          {/* {open ? <ExpandLess /> : <ExpandMore />} */}
-        </ListItem>
         {/*<ListItem
           key="/dividend"
           button
@@ -170,70 +156,6 @@ export default function AppNavigation() {
         <ListItem
           button
           onClick={() => {
-            setFarmOpen(!farmOpen);
-          }}
-        >
-          <ListItemIcon>
-            <div>
-              {React.createElement(farmIcon, { className: classes.icon })}
-            </div>
-          </ListItemIcon>
-          <ListItemText primary="Farm" />
-          {farmOpen ? <ExpandLess /> : <ExpandMore />}
-        </ListItem>
-        <Collapse in={farmOpen} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItem
-              button
-              selected={router.pathname === "/pools/recent"}
-              onClick={() => router.push("/pools/recent")}
-              className={classes.nested}
-            >
-              <ListItemIcon>
-                <FiberNewOutlined />
-              </ListItemIcon>
-              <ListItemText primary="Recent" />
-            </ListItem>
-            <ListItem
-              button
-              selected={router.pathname === "/pools"}
-              onClick={() => router.push("/pools")}
-              className={classes.nested}
-            >
-              <ListItemIcon>
-                <DetailsOutlined />
-              </ListItemIcon>
-              <ListItemText primary="All" />
-            </ListItem>
-
-            {/* <ListItem
-              button
-              selected={router.pathname === "/pools/gainers"}
-              onClick={() => router.push("/pools/gainers")}
-              className={classes.nested}
-            >
-              <ListItemIcon>
-                <TrendingUpOutlined />
-              </ListItemIcon>
-              <ListItemText primary="Gainers" />
-            </ListItem>
-            <ListItem
-              button
-              selected={router.pathname === "/pools/losers"}
-              onClick={() => router.push("/pools/losers")}
-              className={classes.nested}
-            >
-              <ListItemIcon>
-                <TrendingDownOutlined />
-              </ListItemIcon>
-              <ListItemText primary="Losers" />
-            </ListItem> */}
-          </List>
-        </Collapse>
-
-        <ListItem
-          button
-          onClick={() => {
             setPairsOpen(!pairsOpen);
           }}
         >
@@ -268,29 +190,6 @@ export default function AppNavigation() {
                 <DetailsOutlined />
               </ListItemIcon>
               <ListItemText primary="All" />
-            </ListItem>
-
-            <ListItem
-              button
-              selected={router.pathname === "/pairs/gainers"}
-              onClick={() => router.push("/pairs/gainers")}
-              className={classes.nested}
-            >
-              <ListItemIcon>
-                <TrendingUpOutlined />
-              </ListItemIcon>
-              <ListItemText primary="Gainers" />
-            </ListItem>
-            <ListItem
-              button
-              selected={router.pathname === "/pairs/losers"}
-              onClick={() => router.push("/pairs/losers")}
-              className={classes.nested}
-            >
-              <ListItemIcon>
-                <TrendingDownOutlined />
-              </ListItemIcon>
-              <ListItemText primary="Losers" />
             </ListItem>
           </List>
         </Collapse>

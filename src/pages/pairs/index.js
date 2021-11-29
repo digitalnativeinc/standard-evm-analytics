@@ -1,5 +1,11 @@
 import { AppShell, PairTable, SortableTable } from "app/components";
-import { getApollo, getPairs, pairsQuery, useInterval } from "app/core";
+import {
+  getApollo,
+  getEthPrice,
+  getPairs,
+  pairsQuery,
+  useInterval,
+} from "app/core";
 
 import Head from "next/head";
 import React from "react";
@@ -9,7 +15,18 @@ function PairsPage() {
   const {
     data: { pairs },
   } = useQuery(pairsQuery);
-  useInterval(getPairs, 60000);
+
+  const {
+    data: { prices: bundles },
+  } = useQuery(pricesQuery, {
+    variables: { aliases: ["METIS"] },
+    pollInterval: 60000,
+  });
+
+  useInterval(async () => {
+    await Promise.all([getPairs, getEthPrice]);
+  }, 60000);
+
   return (
     <AppShell>
       <Head>
@@ -25,6 +42,7 @@ export async function getStaticProps() {
 
   // Pairs
   await getPairs(client);
+  await getEthPrice();
 
   return {
     props: {

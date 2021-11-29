@@ -174,7 +174,7 @@ function TokenPage() {
     <AppShell>
       <Head>
         <title>
-          {currencyFormatter.format(price || 0)} | {token.symbol} | SushiSwap
+          {currencyFormatter.format(price || 0)} | {token.symbol} | Standard
           Analytics
         </title>
       </Head>

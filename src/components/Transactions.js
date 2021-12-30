@@ -66,12 +66,18 @@ export default function Transactions({ transactions, txCount }) {
                 );
               } else if(row.__typename === "Burn") {
                  return (
-                 {"Remove "}{row.amount0In === "0" ||(row.__typename === "Mint" && !row.amount0In) ? row.pair.token1.symbol: row.pair.token0.symbol}{" "}
-                  and{" "}
+                 <Typography variant="body2" noWrap>
+                 {"Remove "}
+                  {row.amount0In === "0" ||
+                  (row.__typename === "Mint" && !row.amount0In)
+                    ? row.pair.token1.symbol
+                    : row.pair.token0.symbol}{" "}
+                  for{" "}
                   {row.amount1Out === "0" ||
                   (row.__typename === "Mint" && !row.amount1Out)
                     ? row.pair.token0.symbol
                     : row.pair.token1.symbol}
+                  </Typography>
                  );
               } else {
                 return (

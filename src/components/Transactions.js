@@ -42,6 +42,11 @@ export default function Transactions({ transactions, txCount }) {
   });
 
   const now = new Date();
+  const ops = {
+    Mint: "Add ",
+    Burn: "Remove ",
+    Swap: "Swap ",
+  };
 
   return (
     <div className={classes.root}>
@@ -53,56 +58,14 @@ export default function Transactions({ transactions, txCount }) {
             key: "__typename",
             label: "Type",
             render: (row) => {
-              if(row.__typename === "Mint") {
-                return (
-                <Typography variant="body2" noWrap>
-                  {"Add "}{row.amount0In === "0" ||(row.__typename === "Mint" && !row.amount0In) ? row.pair.token1.symbol: row.pair.token0.symbol}{" "}
-                  and{" "}
-                  {row.amount1Out === "0" ||
-                  (row.__typename === "Mint" && !row.amount1Out)
-                    ? row.pair.token0.symbol
-                    : row.pair.token1.symbol}
-                </Typography>
-                );
-              } else if(row.__typename === "Burn") {
-                 return (
-                 <Typography variant="body2" noWrap>
-                 {"Remove "}
-                  {row.amount0In === "0" ||
-                  (row.__typename === "Mint" && !row.amount0In)
-                    ? row.pair.token1.symbol
-                    : row.pair.token0.symbol}{" "}
-                  and{" "}
-                  {row.amount1Out === "0" ||
-                  (row.__typename === "Mint" && !row.amount1Out)
-                    ? row.pair.token0.symbol
-                    : row.pair.token1.symbol}
-                  </Typography>
-                 );
-              } else {
-                return (
-                <Typography variant="body2" noWrap>
-                  {row.__typename}{" "}
-                  {row.amount0In === "0" ||
-                  (row.__typename === "Mint" && !row.amount0In)
-                    ? row.pair.token1.symbol
-                    : row.pair.token0.symbol}{" "}
-                  for{" "}
-                  {row.amount1Out === "0" ||
-                  (row.__typename === "Mint" && !row.amount1Out)
-                    ? row.pair.token0.symbol
-                    : row.pair.token1.symbol}
-                </Typography>
-                );
-              }
               return (
                 <Typography variant="body2" noWrap>
-                  {row.__typename}{" "}
+                  {ops[row.__typename]}
                   {row.amount0In === "0" ||
                   (row.__typename === "Mint" && !row.amount0In)
                     ? row.pair.token1.symbol
                     : row.pair.token0.symbol}{" "}
-                  for{" "}
+                  {row.__typename === "Swap" ? "for" : "and"}{" "}
                   {row.amount1Out === "0" ||
                   (row.__typename === "Mint" && !row.amount1Out)
                     ? row.pair.token0.symbol

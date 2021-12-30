@@ -56,7 +56,7 @@ export default function Transactions({ transactions, txCount }) {
               if(row.__typename === "Mint") {
                 return (
                 <Typography variant="body2" noWrap>
-                  Add {row.amount0In === "0" ||(row.__typename === "Mint" && !row.amount0In) ? row.pair.token1.symbol: row.pair.token0.symbol}{" "}
+                  {"Add "}{row.amount0In === "0" ||(row.__typename === "Mint" && !row.amount0In) ? row.pair.token1.symbol: row.pair.token0.symbol}{" "}
                   and{" "}
                   {row.amount1Out === "0" ||
                   (row.__typename === "Mint" && !row.amount1Out)
@@ -66,7 +66,7 @@ export default function Transactions({ transactions, txCount }) {
                 );
               } else if(row.__typename === "Burn") {
                  return (
-                 Remove {row.amount0In === "0" ||(row.__typename === "Mint" && !row.amount0In) ? row.pair.token1.symbol: row.pair.token0.symbol}{" "}
+                 {"Remove "}{row.amount0In === "0" ||(row.__typename === "Mint" && !row.amount0In) ? row.pair.token1.symbol: row.pair.token0.symbol}{" "}
                   and{" "}
                   {row.amount1Out === "0" ||
                   (row.__typename === "Mint" && !row.amount1Out)

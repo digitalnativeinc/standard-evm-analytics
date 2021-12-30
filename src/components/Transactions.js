@@ -72,8 +72,9 @@ export default function Transactions({ transactions, txCount }) {
                   (row.__typename === "Mint" && !row.amount1Out)
                     ? row.pair.token0.symbol
                     : row.pair.token1.symbol}
-                 )
+                 );
               } else {
+                return (
                 <Typography variant="body2" noWrap>
                   {row.__typename}{" "}
                   {row.amount0In === "0" ||
@@ -86,6 +87,7 @@ export default function Transactions({ transactions, txCount }) {
                     ? row.pair.token0.symbol
                     : row.pair.token1.symbol}
                 </Typography>
+                );
               }
               return (
                 <Typography variant="body2" noWrap>

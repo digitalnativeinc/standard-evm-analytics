@@ -53,7 +53,27 @@ export default function Transactions({ transactions, txCount }) {
             key: "__typename",
             label: "Type",
             render: (row) => {
-              return (
+              if(row.__typename === "Mint") {
+                return (
+                <Typography variant="body2" noWrap>
+                  Add {row.amount0In === "0" ||(row.__typename === "Mint" && !row.amount0In) ? row.pair.token1.symbol: row.pair.token0.symbol}{" "}
+                  and{" "}
+                  {row.amount1Out === "0" ||
+                  (row.__typename === "Mint" && !row.amount1Out)
+                    ? row.pair.token0.symbol
+                    : row.pair.token1.symbol}
+                </Typography>
+                );
+              } else if(row.__typename === "Burn") {
+                 return (
+                 Remove {row.amount0In === "0" ||(row.__typename === "Mint" && !row.amount0In) ? row.pair.token1.symbol: row.pair.token0.symbol}{" "}
+                  and{" "}
+                  {row.amount1Out === "0" ||
+                  (row.__typename === "Mint" && !row.amount1Out)
+                    ? row.pair.token0.symbol
+                    : row.pair.token1.symbol}
+                 )
+              } else {
                 <Typography variant="body2" noWrap>
                   {row.__typename}{" "}
                   {row.amount0In === "0" ||
@@ -61,6 +81,19 @@ export default function Transactions({ transactions, txCount }) {
                     ? row.pair.token1.symbol
                     : row.pair.token0.symbol}{" "}
                   for{" "}
+                  {row.amount1Out === "0" ||
+                  (row.__typename === "Mint" && !row.amount1Out)
+                    ? row.pair.token0.symbol
+                    : row.pair.token1.symbol}
+                </Typography>
+              }
+              return (
+                <Typography variant="body2" noWrap>
+                  {row.__typename}{" LTR with "}
+                  {row.amount0In === "0" ||(row.__typename === "Mint" && !row.amount0In)
+                    ? row.pair.token1.symbol
+                    : row.pair.token0.symbol}{" "}
+                  and{" "}
                   {row.amount1Out === "0" ||
                   (row.__typename === "Mint" && !row.amount1Out)
                     ? row.pair.token0.symbol

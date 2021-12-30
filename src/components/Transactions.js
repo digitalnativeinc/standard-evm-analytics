@@ -72,7 +72,7 @@ export default function Transactions({ transactions, txCount }) {
                   (row.__typename === "Mint" && !row.amount0In)
                     ? row.pair.token1.symbol
                     : row.pair.token0.symbol}{" "}
-                  for{" "}
+                  and{" "}
                   {row.amount1Out === "0" ||
                   (row.__typename === "Mint" && !row.amount1Out)
                     ? row.pair.token0.symbol
@@ -97,11 +97,12 @@ export default function Transactions({ transactions, txCount }) {
               }
               return (
                 <Typography variant="body2" noWrap>
-                  {row.__typename}{" LTR with "}
-                  {row.amount0In === "0" ||(row.__typename === "Mint" && !row.amount0In)
+                  {row.__typename}{" "}
+                  {row.amount0In === "0" ||
+                  (row.__typename === "Mint" && !row.amount0In)
                     ? row.pair.token1.symbol
                     : row.pair.token0.symbol}{" "}
-                  and{" "}
+                  for{" "}
                   {row.amount1Out === "0" ||
                   (row.__typename === "Mint" && !row.amount1Out)
                     ? row.pair.token0.symbol

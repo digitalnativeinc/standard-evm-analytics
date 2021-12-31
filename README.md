@@ -3,9 +3,11 @@
 Standard EVM Analytics is a fork of Sushiswap Analytics to monitor pairs and liquidity of its UniswapV2 Fork with modifications.
 
 To see all diffs:
+
 ```
 $ git diff d51a0c46c29e2b3c680732dd822fef2ae81c0fe1 .
 ```
+
 ## Getting started
 
 This one-liner assumes you have git, nvm & yarn installed.

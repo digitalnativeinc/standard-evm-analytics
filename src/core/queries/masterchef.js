@@ -163,6 +163,7 @@ export const poolsQuery = gql`
       roiPerMonth @client
       roiPerYear @client
       rewardPerThousand @client
+      poolShare @client
       tvl @client
       timestamp
     }

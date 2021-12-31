@@ -104,7 +104,6 @@ export default function AppBar({
   const page =
     router.pathname === "/" ? "Dashboard" : router.pathname.split("/")[1];
   //
-  // console.log("bjhl",(open && isDesktop), (mobileOpen && !matches);
   const { isDesktop } = useDetect();
   const isDt = isDesktop();
   const isViewportSmUp = useSizeSmUp();

@@ -21,7 +21,9 @@ const getTokenUrls = (chainId, id, symbol) => {
   const urls = [];
   if (symbol)
     urls.push(
-      `https://raw.githubusercontent.com/digitalnativeinc/icons/master/token/${symbol.toLowerCase()}.jpg`
+      `https://raw.githubusercontent.com/digitalnativeinc/icons/master/token/${getCurrencySymbol(
+        symbol
+      ).toLowerCase()}.jpg`
     );
   urls.push(
     `https://raw.githubusercontent.com/digitalnativeinc/assets/master/blockchains/${chainId}/assets/${toChecksumAddress(
@@ -30,6 +32,22 @@ const getTokenUrls = (chainId, id, symbol) => {
   );
   return urls;
 };
+
+function getCurrencySymbol(symbol, chainId) {
+  let _symbol;
+  if (symbol.startsWith("m.")) {
+    _symbol = symbol.substring(2);
+  } else {
+    _symbol = symbol;
+  }
+  if (_symbol === "WBTC") {
+    return "btc";
+  }
+  if (_symbol === "WETH") {
+    return "eth";
+  }
+  return _symbol.toLowerCase();
+}
 
 export default function TokenIcon({ id, symbol, ...rest }) {
   const [, refresh] = useState(0);

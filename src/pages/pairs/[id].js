@@ -250,7 +250,11 @@ function PairPage(props) {
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" className={classes.paper}>
             <Box display="flex" alignItems="center">
-              <TokenIcon className={classes.avatar} id={pair.token0.id} />
+              <TokenIcon
+                className={classes.avatar}
+                id={pair.token0.id}
+                symbol={pair.token0.symbol}
+              />
               <Typography
                 variant="h6"
                 color="textPrimary"
@@ -275,7 +279,11 @@ function PairPage(props) {
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" className={classes.paper}>
             <Box display="flex" alignItems="center">
-              <TokenIcon className={classes.avatar} id={pair.token1.id} />
+              <TokenIcon
+                className={classes.avatar}
+                id={pair.token1.id}
+                symbol={pair.token1.symbol}
+              />
               <Typography
                 variant="h6"
                 color="textPrimary"

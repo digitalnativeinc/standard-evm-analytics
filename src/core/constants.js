@@ -3,7 +3,7 @@ export const TOKEN_DENY = [
   "0xc3761eb917cd790b30dad99f6cc5b4ff93c4f9ea",
   "0xe31debd7abff90b06bca21010dd860d8701fd901",
   "0xfc989fbb6b3024de5ca0144dc23c18a063942ac1",
-  "0x00C0e23d0205845378d079dcb8D5731383F1149b"
+  "0x00C0e23d0205845378d079dcb8D5731383F1149b",
 ];
 
 export const PAIR_DENY = ["0xb6a741f37d6e455ebcc9f17e2c16d0586c3f57a5"];
@@ -14,14 +14,15 @@ export const POOL_DENY = [];
 
 export const SUSHI_TOKEN = "0x9040e237C3bF18347bb00957Dc22167D0f2b999d";
 
-export const DEFAULT_CHAIN_ID = 1;
-
 export const ChainId = {
   MAINNET: 1,
   RINKEBY: 4,
   SHIBUYA: 81,
   SHIDEN: 336,
+  METIS: 1088,
 };
+
+export const DEFAULT_CHAIN_ID = ChainId.METIS;
 
 export const SCANNERS = {
   [ChainId.MAINNET]: {
@@ -64,6 +65,16 @@ export const SCANNERS = {
       return `https://blockscout.com/shiden/tx/${id}`;
     },
   },
+  [ChainId.METIS]: {
+    name: "Andromeda Explorer",
+    url: "https://andromeda-explorer.metis.io",
+    getUrl: (id) => {
+      return `https://andromeda-explorer.metis.io/address/${id}`;
+    },
+    getTxUrl: (id) => {
+      return `https://andromeda-explorer.metis.io/tx/${id}`;
+    },
+  },
 };
 
 // all addrs should be lowercase
@@ -72,12 +83,14 @@ export const FACTORY_ADDRESS = {
   [ChainId.RINKEBY]: "0xf659492744608b595670c1508aa0f5b92b84b94d",
   [ChainId.SHIBUYA]: "0x0e60c35fcf3184dce5cf04d4b736e56f2de7caf7",
   [ChainId.SHIDEN]: "0x073386AE3292299a5814B00bC1ceB8f2bfC92c51",
+  [ChainId.METIS]: "0xfa68baadbdcf014fa20bd1a4542967ae40ddca53",
 };
 
 export const MASTERPOOL_ADDRESS = {
   [ChainId.MAINNET]: "0xb9112feef2054acc4066c40e8c2784fa3e9d032f",
   [ChainId.RINKEBY]: "0x22079b36af1ab814350fff725cd8f67f3c70b753",
   [ChainId.SHIDEN]: "0x375eC65e75083Ee8545fA9168257Ac2a456DDAbb",
+  [ChainId.METIS]: "0x23423292396a37c0c2e4d384dce7ab67738bec28",
 };
 
 export const STND_ADDRESS = {
@@ -85,6 +98,7 @@ export const STND_ADDRESS = {
   [ChainId.RINKEBY]: "0xc8aeedb09f4d90d59ee47fed8c70d10fd267b2ab",
   [ChainId.SHIBUYA]: "0xb0a1aa4cb76c0e35d9ac9eba422bf76534bf155a",
   [ChainId.SHIDEN]: "0x722377a047e89ca735f09eb7cccab780943c4cb4",
+  [ChainId.METIS]: "0xc12cac7090baa48ec750cceec57c80768f6ee58e",
 };
 
 export const DIVIDEND_POOL_ADDRESS = {

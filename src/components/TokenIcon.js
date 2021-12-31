@@ -23,7 +23,7 @@ const getTokenUrls = (chainId, id, symbol) => {
     urls.push(
       `https://raw.githubusercontent.com/digitalnativeinc/icons/master/token/${getCurrencySymbol(
         symbol
-      ).toLowerCase()}.jpg`
+      )}.jpg`
     );
   urls.push(
     `https://raw.githubusercontent.com/digitalnativeinc/assets/master/blockchains/${chainId}/assets/${toChecksumAddress(

@@ -71,8 +71,6 @@ export default function TokenTable({ tokens, title }) {
       };
     });
 
-  console.log(rows);
-
   return (
     <div className={classes.root}>
       <SortableTable

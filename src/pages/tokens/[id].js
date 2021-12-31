@@ -210,7 +210,7 @@ function TokenPage() {
               Add Liquidity
             </Link>
             <Link
-              href={`https://apps.standard.tech/swap?inputCurrency=${token.id}`}
+              href={`https://apps.standard.tech/trade/buy?inputCurrency=${token.id}`}
               target="_blank"
               variant="body1"
             >

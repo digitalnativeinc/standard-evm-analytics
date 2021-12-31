@@ -228,7 +228,7 @@ function PairPage(props) {
               Add Liquidity
             </Link>
             <Link
-              href={`https://apps.standard.tech/swap?inputCurrency=${
+              href={`https://apps.standard.tech/trade/buy?inputCurrency=${
                 pair.token0.symbol === "WETH" || pair.token0.symbol === "ETH"
                   ? "ETH"
                   : pair.token0.id

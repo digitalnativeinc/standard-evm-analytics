@@ -71,6 +71,8 @@ export default function TokenTable({ tokens, title }) {
       };
     });
 
+  console.log(rows);
+
   return (
     <div className={classes.root}>
       <SortableTable
@@ -131,7 +133,7 @@ export default function TokenTable({ tokens, title }) {
             label: "Last 7 Days",
             render: (row) => (
               <Sparklines
-                data={row.dayData.map((d) => d.priceUSD)}
+                data={row.dayData.map((d) => d.priceUSD).reverse()}
                 limit={7}
                 svgWidth={160}
                 svgHeight={30}

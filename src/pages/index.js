@@ -8,7 +8,7 @@ import {
   TokenTable,
 } from "app/components";
 import { makeStyles, Box, Grid, Paper } from "@material-ui/core";
-import React, { useState } from "react";
+import React from "react";
 import {
   dayDatasQuery,
   getApollo,

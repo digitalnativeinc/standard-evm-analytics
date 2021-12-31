@@ -189,7 +189,7 @@ function TokenPage() {
         >
           <Grid item xs={12} sm="auto" className={classes.title}>
             <Box display="flex" alignItems="center">
-              <TokenIcon id={token.id} />
+              <TokenIcon id={token.id} symbol={token.symbol} />
               <Typography variant="h5" component="h1" noWrap>
                 {token.name} ({token.symbol}){" "}
               </Typography>

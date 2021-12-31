@@ -42,6 +42,11 @@ export default function Transactions({ transactions, txCount }) {
   });
 
   const now = new Date();
+  const ops = {
+    Mint: "Add ",
+    Burn: "Remove ",
+    Swap: "Swap ",
+  };
 
   return (
     <div className={classes.root}>
@@ -55,12 +60,12 @@ export default function Transactions({ transactions, txCount }) {
             render: (row) => {
               return (
                 <Typography variant="body2" noWrap>
-                  {row.__typename}{" "}
+                  {ops[row.__typename]}
                   {row.amount0In === "0" ||
                   (row.__typename === "Mint" && !row.amount0In)
                     ? row.pair.token1.symbol
                     : row.pair.token0.symbol}{" "}
-                  for{" "}
+                  {row.__typename === "Swap" ? "for" : "and"}{" "}
                   {row.amount1Out === "0" ||
                   (row.__typename === "Mint" && !row.amount1Out)
                     ? row.pair.token0.symbol

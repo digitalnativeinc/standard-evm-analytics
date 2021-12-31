@@ -220,6 +220,10 @@ export async function getPools(client = getApollo(), chainId = getNetwork()) {
           const roiPerMonth = roiPerDay * 30;
 
           const roiPerYear = roiPerMonth * 12;
+
+          const poolShare =
+            Number(pool.slpBalanceDecimal) / Number(pair.totalSupply);
+
           return {
             ...pool,
             liquidityPair: pair,
@@ -229,6 +233,7 @@ export async function getPools(client = getApollo(), chainId = getNetwork()) {
             roiPerMonth,
             roiPerYear,
             rewardPerThousand: 1 * roiPerDay * (1000 / sushiPrice),
+            poolShare,
             tvl:
               (pair.reserveUSD / pair.totalSupply) *
                 liquidityPosition?.liquidityTokenBalance ?? 1,

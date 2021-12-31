@@ -81,13 +81,47 @@ export default function PoolTable({ pools, ...rest }) {
               </Typography>
             ),
           },
-
+          {
+            key: "poolReserve0",
+            label: "Staked Base Reserve",
+            render: (row) => (
+              <Box display="flex">
+                <TokenIcon
+                  symbol={row.liquidityPair?.token0?.symbol}
+                  id={row.liquidityPair?.token0?.id}
+                  className={classes.small}
+                />
+                <Typography variant="subtitle2" noWrap>
+                  {formatDecimal(row.liquidityPair?.reserve0 * row.poolShare)}{" "}
+                  {row.liquidityPair?.token0?.symbol}
+                </Typography>
+              </Box>
+            ),
+          },
+          {
+            key: "poolReserve1",
+            label: "Staked Quote Reserve",
+            render: (row) => (
+              <Box display="flex">
+                <TokenIcon
+                  symbol={row.liquidityPair?.token1?.symbol}
+                  id={row.liquidityPair?.token1?.id}
+                  className={classes.small}
+                />
+                <Typography variant="subtitle2" noWrap>
+                  {formatDecimal(row.liquidityPair?.reserve1 * row.poolShare)}{" "}
+                  {row.liquidityPair?.token1?.symbol}
+                </Typography>
+              </Box>
+            ),
+          },
           {
             key: "reserve0",
             label: "Base Reserve",
             render: (row) => (
               <Box display="flex">
                 <TokenIcon
+                  symbol={row.liquidityPair?.token0?.symbol}
                   id={row.liquidityPair?.token0?.id}
                   className={classes.small}
                 />
@@ -104,6 +138,7 @@ export default function PoolTable({ pools, ...rest }) {
             render: (row) => (
               <Box display="flex">
                 <TokenIcon
+                  symbol={row.liquidityPair?.token1?.symbol}
                   id={row.liquidityPair?.token1?.id}
                   className={classes.small}
                 />

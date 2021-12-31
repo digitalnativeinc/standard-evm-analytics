@@ -35,7 +35,7 @@ export const blocksQuery = gql`
       skip: $skip
       orderBy: number
       orderDirection: desc
-      where: { timestamp_gt: $start, timestamp_lt: $end, number_gt: 9300000 }
+      where: { timestamp_gt: $start, timestamp_lt: $end }
     ) {
       ...blockFields
     }
@@ -50,8 +50,8 @@ export const latestBlockQuery = gql`
       skip: 0
       orderBy: number
       orderDirection: desc
-      where: { number_gt: 9300000 }
-    ) {
+    ) # where: { number_gt: 9300000 }
+    {
       ...blockFields
     }
   }

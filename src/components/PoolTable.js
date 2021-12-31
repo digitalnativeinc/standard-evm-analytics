@@ -87,7 +87,8 @@ export default function PoolTable({ pools, ...rest }) {
             render: (row) => (
               <Box display="flex">
                 <TokenIcon
-                  id={row.liquidityPair?.token1?.id}
+                  symbol={row.liquidityPair?.token0?.symbol}
+                  id={row.liquidityPair?.token0?.id}
                   className={classes.small}
                 />
                 <Typography variant="subtitle2" noWrap>
@@ -103,6 +104,7 @@ export default function PoolTable({ pools, ...rest }) {
             render: (row) => (
               <Box display="flex">
                 <TokenIcon
+                  symbol={row.liquidityPair?.token1?.symbol}
                   id={row.liquidityPair?.token1?.id}
                   className={classes.small}
                 />
@@ -119,6 +121,7 @@ export default function PoolTable({ pools, ...rest }) {
             render: (row) => (
               <Box display="flex">
                 <TokenIcon
+                  symbol={row.liquidityPair?.token0?.symbol}
                   id={row.liquidityPair?.token0?.id}
                   className={classes.small}
                 />
@@ -135,6 +138,7 @@ export default function PoolTable({ pools, ...rest }) {
             render: (row) => (
               <Box display="flex">
                 <TokenIcon
+                  symbol={row.liquidityPair?.token1?.symbol}
                   id={row.liquidityPair?.token1?.id}
                   className={classes.small}
                 />
